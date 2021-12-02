@@ -5,17 +5,20 @@ fun main() {
         }.size
     }
 
+    fun toInts(input: List<String>) = input.filter { it.isNotBlank() }.map { it.toInt() }
+
     fun part1(input: List<String>): Int {
-        return part1(input.filter { it.isNotBlank() }.map { it.toInt() })
+        return part1(toInts(input))
     }
 
     fun part2(input: List<String>): Int {
-        val windowValues = input.filter { it.isNotBlank() }.mapIndexedNotNull { index, tail ->
-            val values = listOf(input.getOrNull(index - 2), input.getOrNull(index - 1), tail)
+        val intsInput = toInts(input)
+        val windowValues = intsInput.mapIndexedNotNull { index, tail ->
+            val values = listOf(intsInput.getOrNull(index - 2), intsInput.getOrNull(index - 1), tail)
             if (values.contains(null))
                 null
             else {
-                values.sumOf { it?.toInt() ?: error("There should be no nulls here") }
+                values.sumOf { it ?: error("There should be no nulls here") }
             }
         }
         return part1(windowValues)
