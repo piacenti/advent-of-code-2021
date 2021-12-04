@@ -9,14 +9,14 @@ fun main() {
         }.size
     }
 
-    fun toInts(input: List<String>) = input.filter { it.isNotBlank() }.map { it.toInt() }
+    fun toIntList(input: List<String>) = input.map { it.toInt() }
 
     fun part1(input: List<String>): Int {
-        return part1(toInts(input))
+        return part1(toIntList(input))
     }
 
     fun part2(input: List<String>): Int {
-        val intsInput = toInts(input)
+        val intsInput = toIntList(input)
         val windowValues = intsInput.mapIndexedNotNull { index, tail ->
             val values = listOf(intsInput.getOrNull(index - 2), intsInput.getOrNull(index - 1), tail)
             if (values.contains(null))
@@ -29,11 +29,11 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("day1/Day01_test")
+    val testInput = readInput("day1/Task_test")
     check(part1(testInput) == 7)
     check(part2(testInput) == 5)
 
-    val input = readInput("day1/Day01")
+    val input = readInput("day1/Task")
     println(part1(input))
     println(part2(input))
 }
