@@ -1,7 +1,7 @@
 package day2
 
 import readInput
-
+//https://adventofcode.com/2021/day/2
 fun main() {
     val forward = "forward"
     val up = "up"

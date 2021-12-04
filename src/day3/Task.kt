@@ -4,11 +4,11 @@ import readInput
 
 enum class Frequency { MOST_COMMON, LEAST_COMMON }
 enum class Type { OXYGEN, CO2 }
-
+//https://adventofcode.com/2021/day/3
 fun main() {
 
 
-    fun bitRateForCommonality(length: Int, input: List<String>, frequency: Frequency): String {
+    fun bitsForFrequencyType(length: Int, input: List<String>, frequency: Frequency): String {
         var bits = ""
         for (column in 0 until length) {
             val groupBy = input.map { it[column] }.groupBy { it }
@@ -19,15 +19,12 @@ fun main() {
         return bits
     }
 
-    fun bitRateForType(length: Int, input: List<String>, type: Type): String {
+    fun bitsForType(length: Int, input: List<String>, type: Type): String {
         var list = input
         for (column in 0 until length) {
             val groupBy = list.groupBy { it[column] }
             list = if (groupBy.size == 2 && groupBy.values.flatten().size == 2) {
-                if (type == Type.OXYGEN)
-                    list.filter { it[column] == '1' }
-                else
-                    list.filter { it[column] == '0' }
+                list.filter { it[column] == if (type == Type.OXYGEN) '1' else '0' }
             } else {
                 val factor =
                     if (type == Type.OXYGEN) groupBy.maxByOrNull { it.value.size } else groupBy.minByOrNull { it.value.size }
@@ -39,8 +36,8 @@ fun main() {
 
     fun part1(input: List<String>): Int {
         val length = input.first().length
-        val gamaRateBits = bitRateForCommonality(length, input, Frequency.MOST_COMMON)
-        val epsilonRateBits = bitRateForCommonality(length, input, Frequency.LEAST_COMMON)
+        val gamaRateBits = bitsForFrequencyType(length, input, Frequency.MOST_COMMON)
+        val epsilonRateBits = bitsForFrequencyType(length, input, Frequency.LEAST_COMMON)
         val gamaRate = gamaRateBits.toInt(2)
         val epsilonRate = epsilonRateBits.toInt(2)
         return gamaRate * epsilonRate
@@ -48,8 +45,8 @@ fun main() {
 
     fun part2(input: List<String>): Int {
         val length = input.first().length
-        val oxygenRateBits = bitRateForType(length, input, Type.OXYGEN)
-        val co2RateBits = bitRateForType(length, input, Type.CO2)
+        val oxygenRateBits = bitsForType(length, input, Type.OXYGEN)
+        val co2RateBits = bitsForType(length, input, Type.CO2)
         val oxygenRate = oxygenRateBits.toInt(2)
         val co2Rate = co2RateBits.toInt(2)
         return oxygenRate * co2Rate

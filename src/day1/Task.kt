@@ -1,7 +1,7 @@
 package day1
 
 import readInput
-
+//https://adventofcode.com/2021/day/1
 fun main() {
     fun part1(input: List<Int>): Int {
         return input.filterIndexed { index, after ->
