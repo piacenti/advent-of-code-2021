@@ -1,6 +1,6 @@
 package day1
 
-import readInput
+import readInputWithoutBlankLines
 //https://adventofcode.com/2021/day/1
 fun main() {
     fun part1(input: List<Int>): Int {
@@ -29,11 +29,11 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("day1/Task_test")
+    val testInput = readInputWithoutBlankLines("day1/Task_test")
     check(part1(testInput) == 7)
     check(part2(testInput) == 5)
 
-    val input = readInput("day1/Task")
+    val input = readInputWithoutBlankLines("day1/Task")
     println(part1(input))
     println(part2(input))
 }

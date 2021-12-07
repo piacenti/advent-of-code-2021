@@ -1,6 +1,6 @@
 package day2
 
-import readInput
+import readInputWithoutBlankLines
 //https://adventofcode.com/2021/day/2
 fun main() {
     val forward = "forward"
@@ -44,9 +44,9 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("day2/Task_test")
+    val testInput = readInputWithoutBlankLines("day2/Task_test")
     check(part1(testInput) == 150)
-    val input = readInput("day2/Task")
+    val input = readInputWithoutBlankLines("day2/Task")
     println(part1(input))
 
     check(part2(testInput) == 900)

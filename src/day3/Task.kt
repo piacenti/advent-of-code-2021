@@ -1,6 +1,6 @@
 package day3
 
-import readInput
+import readInputWithoutBlankLines
 
 enum class Frequency { MOST_COMMON, LEAST_COMMON }
 enum class Type { OXYGEN, CO2 }
@@ -53,8 +53,8 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("day3/Task_test")
-    val input = readInput("day3/Task")
+    val testInput = readInputWithoutBlankLines("day3/Task_test")
+    val input = readInputWithoutBlankLines("day3/Task")
 
     check(part1(testInput) == 198)
     println(part1(input))
